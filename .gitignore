@@ -9,6 +9,10 @@
 __pycache__/
 /supersizeme/__pycache__/
 /backend/__pycache__/
+/Lib
+/Scripts
+/supersizeme/supersizeme_react/
+pyvenv.cfg
 
 # environment
 .venv
