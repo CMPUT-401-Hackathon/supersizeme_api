@@ -20,5 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('User/', include("User.urls")),
     path('nutrition/', include('backend.urls')),
-    path('log', include('logs.urls'))
+    path('log/', include('logs.urls'))
 ]
