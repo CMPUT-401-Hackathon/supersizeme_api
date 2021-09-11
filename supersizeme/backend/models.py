@@ -15,3 +15,21 @@ class Item(models.Model):
     fiber = models.FloatField()
     sugars = models.FloatField()
     protein = models.FloatField()
+
+    def json_representation(self):
+        adict = {'category': self.category,
+                'serving_size': self.serving_size,
+                'calories' : self.calories, 
+                'calories_from_fat' : self.calories_from_fat,
+                'total_fat' : self.total_fat,
+                'saturated_fat' : self.saturated_fat,
+                'trans_fat' : self.trans_fat,
+                'cholesterol' : self.cholesterol,
+                'sodium' : self.sodium,
+                'carbohydrates' : self.carbohydrates,
+                'fiber' : self.fiber,
+                'sugars' : self.sugars,
+                'protein' : self.protein
+                }
+        
+        return adict
