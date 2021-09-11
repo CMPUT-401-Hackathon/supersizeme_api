@@ -1,27 +1,14 @@
 from django.http import Http404
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render
-from models import User
-
-def createUser(request):
-    userName = request.REQUEST.get('username', '')
-    # Check if user already existed
-    if userName:
-        user = User.objects.get(username = userName)
-        if user:
-            return HttpResponse("Username already exists")
-        else:
-            User.objects.create(username = userName)
-            #Render the first login page
-    else:
-        return HttpResponse("Request is Empty")
+from User.models import User
 
 def userLogin(request, username):
     try:
         user = User.objects.get(username = username)
-    except user.DoesNotExist:
+    except User.DoesNotExist:
         raise Http404("User does not exist")
-    #return the user overview page
+    #Render the user overview page
 
 def updateUser(request):
     userName = request.REQUEST.get('username', '')
@@ -41,11 +28,10 @@ def updateUser(request):
             user.activityLevel = activityLevel
             user.save()
         else:
-            raise Http404("User does not exist")
-        
-
-
-
-
-
-
+            #Create the User if they do not exist, like on sign-up.
+            User.objects.create(userName = userName, 
+            age = age, 
+            gender = gender, 
+            height = height, 
+            weight = weight, 
+            activityLevel = activityLevel)
