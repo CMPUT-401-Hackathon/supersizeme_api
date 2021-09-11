@@ -2,7 +2,7 @@ import csv
 import sqlite3
 import re
 
-csv_file = "C:/Users/miche/Documents/school/y5fall/cmput-401/hackathon/menu.csv"
+csv_file = "menu.csv"
 
 connection = sqlite3.connect('db.sqlite3')
 c = connection.cursor()
