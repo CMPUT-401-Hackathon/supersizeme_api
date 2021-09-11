@@ -1,0 +1,15 @@
+
+.vscode
+### Django ###
+*.log
+*.pot
+*.pyc
+*.png
+*.ico
+__pycache__/
+/supersizeme/__pycache__/
+/backend/__pycache__/
+
+# environment
+.venv
+venv/
