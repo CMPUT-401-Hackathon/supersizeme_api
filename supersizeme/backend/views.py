@@ -1,4 +1,6 @@
+import json
 from django.http import HttpResponse, JsonResponse, HttpResponseNotFound
+from django.shortcuts import get_object_or_404
 from backend.models import Item
 
 # GET Request for food categories
@@ -31,3 +33,13 @@ def category_info(request, category):
     for item in items:
         items_jsoned.append(item.json_representation())
     return JsonResponse(items_jsoned, safe=False)
+
+def delete(request, name):
+    item = get_object_or_404(Item, name=name)
+    item.delete()
+    return HttpResponse(status=200)
+
+def add(request, name):
+    data = json.loads(request.body.decode())
+    Item.objects.create(name=name, **data)
+    return HttpResponse(status=201)
