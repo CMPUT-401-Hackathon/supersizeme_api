@@ -1,6 +1,6 @@
 from django.db import models
 class User(models.Model):
-    username = models.CharField(max_length=60)
+    username = models.CharField(max_length=60, unique=True)
     age = models.CharField(max_length=60)
     gender = models.IntegerField() # 0 for male, 1 for female, 2 for other
     height = models.IntegerField() # centimeres
