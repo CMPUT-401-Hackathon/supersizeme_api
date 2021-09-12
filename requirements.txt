@@ -1,2 +1,4 @@
 django-cors-headers==3.8.0
 gunicorn
+psycopg2
+django-heroku
