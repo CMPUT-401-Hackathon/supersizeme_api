@@ -57,10 +57,10 @@ def calrecs(request,username):
         Protein = caloriesFromProtein * 0.25
 
         nutritionalRecommendations = {
-            "Calories":caloricIntake,
-            "Protein":Protein,
-            "Carbohydrates":Carbohydrates,
-            "Fat":Fat
+            "calories":caloricIntake,
+            "protein":Protein,
+            "carbs":Carbohydrates,
+            "fats":Fat
         }
 
         return JsonResponse(nutritionalRecommendations)

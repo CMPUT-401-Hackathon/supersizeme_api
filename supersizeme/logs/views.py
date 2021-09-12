@@ -15,7 +15,7 @@ def log(request, username, date):
     user = get_object_or_404(User, username=username)
     date = datetime.datetime.strptime(date, "%Y-%m-%d")
     if request.method == "GET":
-        logs = Log.objects.filter(date=date)
+        logs = Log.objects.filter(date=date, user=user)
         output = {}
         for log in logs:
             for key, val in log.item.json_representation().items():
@@ -42,3 +42,21 @@ def log(request, username, date):
 
     return HttpResponse(status=400)
 
+def logs(request, username):
+    user = get_object_or_404(User, username=username)
+    logs = Log.objects.filter(user=user).order_by('date')
+    dates = {}
+    for log in logs:
+        if log.date not in dates:
+            dates[log.date] = {
+                "date": log.date
+            }
+            for key, val in log.item.json_representation().items():
+                if isinstance(val, numbers.Number):
+                    dates[log.date][key] = log.amount * val
+        else:
+            for key, val in log.item.json_representation().items():
+                if isinstance(val, numbers.Number):
+                    dates[log.date][key] += log.amount * val
+    output = list(dates.values())
+    return JsonResponse(output, safe=False)
