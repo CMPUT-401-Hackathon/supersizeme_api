@@ -45,14 +45,18 @@ def log(request, username, date):
 def logs(request, username):
     user = get_object_or_404(User, username=username)
     logs = Log.objects.filter(user=user).order_by('date')
-    output = []
+    dates = {}
     for log in logs:
-        new = {}
-        new["date"] = log.date
-        new["item"] = log.item.name
-        new["amount"] = log.amount
-        for key, val in log.item.json_representation().items():
-            if isinstance(val, numbers.Number):
-                new[key] = log.amount * val
-        output.append(new)
+        if log.date not in dates:
+            dates[log.date] = {
+                "date": log.date
+            }
+            for key, val in log.item.json_representation().items():
+                if isinstance(val, numbers.Number):
+                    dates[log.date][key] = log.amount * val
+        else:
+            for key, val in log.item.json_representation().items():
+                if isinstance(val, numbers.Number):
+                    dates[log.date][key] += log.amount * val
+    output = list(dates.values())
     return JsonResponse(output, safe=False)
