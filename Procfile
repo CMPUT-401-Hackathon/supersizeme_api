@@ -1,1 +1,1 @@
-web: gunicorn supersizeme.wsgi --log-file -
+web: gunicorn supersizeme.wsgi
