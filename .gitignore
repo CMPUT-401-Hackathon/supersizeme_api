@@ -17,3 +17,5 @@ pyvenv.cfg
 # environment
 .venv
 venv/
+
+db.sqlite3
