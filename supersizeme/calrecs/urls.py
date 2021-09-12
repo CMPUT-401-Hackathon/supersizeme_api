@@ -16,11 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from . import views
 
 urlpatterns = [
-    path('calrecs/', include('calrecs.urls')),
-    path('admin/', admin.site.urls),
-    path('User/', include("User.urls")),
-    path('nutrition/', include('backend.urls')),
-    path('log/', include('logs.urls'))
+    path('<str:username>/', views.calrecs),
 ]
