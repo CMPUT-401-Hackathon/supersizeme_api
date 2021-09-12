@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'calrecs.apps.CalrecsConfig',
     'User.apps.UserConfig',
     'backend.apps.BackendConfig',
     'logs.apps.LogsConfig',
