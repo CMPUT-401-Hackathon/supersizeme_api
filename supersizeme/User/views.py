@@ -2,7 +2,7 @@ import json
 from django.http import Http404
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render
-from User.models import User
+from .models import User
 
 def userLogin(request, username):
     try:
