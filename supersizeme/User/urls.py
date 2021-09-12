@@ -4,5 +4,9 @@ from . import views
 
 urlpatterns = [
     # ex: /User/test/
-    path('<str:userName>/UpdateUser/', views.updateUser, name='updateUser'),
+    path('<str:username>/UpdateUser/', views.updateUser, name='updateUser'),
+    # ex: /User/TestUser/userLogin/
+    path('<str:username>/userLogin/', views.userLogin, name='userLogin'),
+    # ex: /User/TestUser/GetUserDetails/
+    path('<str:username>/GetUserDetails/', views.getUserDetails, name='getUserdetails')
 ]
