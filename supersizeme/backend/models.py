@@ -33,3 +33,6 @@ class Item(models.Model):
                 }
         
         return adict
+
+    def __str__(self):
+        return self.name
