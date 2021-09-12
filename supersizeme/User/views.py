@@ -37,12 +37,23 @@ def updateUser(request):
     activityLevel = data["activityLevel"]
 
     if userName:
-        #Create the User if they do not exist, like on sign-up.
-        User.objects.create(username = userName, 
-        age = age, 
-        gender = gender, 
-        height = height, 
-        weight = weight, 
-        activityLevel = activityLevel)
+        if User.objects.filter(username = userName).exists():
+            #Update user if they exist.
+            user = User.objects.get(username = userName)
+            user.age = age
+            user.height = height
+            user.gender = gender
+            user.weight = weight
+            user.activityLevel = activityLevel
+            user.save()
+        else:
+            #Create the User if they do not exist, for sign-up.
+            User.objects.create(
+            username = userName, 
+            age = age, 
+            gender = gender, 
+            height = height, 
+            weight = weight, 
+            activityLevel = activityLevel)
         return HttpResponse(status=201)
     return HttpResponse(status=400)
