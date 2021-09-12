@@ -7,6 +7,6 @@ from User.models import User
 
 class Log(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField(auto_now_add=True, blank=True)
+    date = models.DateField()
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     amount = models.FloatField(default=0.0)
