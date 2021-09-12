@@ -1,2 +1,2 @@
-web: gunicorn supersizeme.supersizeme.wsgi
+web: gunicorn supersizeme.wsgi
 
