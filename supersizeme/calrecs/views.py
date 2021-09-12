@@ -1,7 +1,6 @@
 #from django.shortcuts import render
-from django.http import HttpResponse
-import json
-from .models import User
+from django.http import HttpResponse, JsonResponse
+from User.models import User
 # Create your views here.
 
 def calrecs(request,username):
@@ -20,12 +19,12 @@ def calrecs(request,username):
         if sex == 0:
             # Harris Benedict kg cm
             # 10 ⨉ weight (kg) + 6.25 ⨉ height (cm) – 5 ⨉ age (years) + 5
-            BMR = 10*weight + 6.25*height - 5 * age + 5
+            BMR = 10*weight + 6.25*height - 5 * int(age) + 5
 
         elif sex == 1:
             # Harris Benedict kg cm
             # 10 ⨉ weight (kg) + 6.25 ⨉ height (cm) – 5 ⨉ age (years) – 161
-            BMR = 10*weight + 6.25*height - 5*age - 161
+            BMR = 10*weight + 6.25*height - 5*int(age) - 161
         
         caloricIntake = 0
         if activityLevel == 1:
@@ -66,7 +65,7 @@ def calrecs(request,username):
 
         return JsonResponse(nutritionalRecommendations)
 
-    except Models.DoesNotExist:
+    except User.DoesNotExist:
         print("Username does not exist.")
     
     
